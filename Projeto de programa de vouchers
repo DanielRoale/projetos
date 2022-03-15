@@ -1,0 +1,383 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+#define TRUE 1
+#define FALSE 0
+#define TAMANHO 8 
+
+struct Voucher
+{
+    char empresa[20];
+    int qtd, id, cod, valor;
+} voucher[TAMANHO];
+
+struct Cadastro
+{
+    char nome[20], email[20];
+    int cpf, telefone, kg;
+} cadastro;
+
+struct Carrinho
+{
+    char empresa[20], nome[20], email[20];
+    int id, cpf, telefone, kg, valor;
+} carrinho[TAMANHO];
+
+void menu_voucher();
+
+void menu();
+
+void menu_cliente();
+
+void menu_funcionario();
+
+void add_voucher();
+
+void mostra_voucher();
+
+void remove_voucher();
+
+void repor_voucher();
+
+void resgate();
+
+void cadastro_usuario();
+
+void historico(int j, int soma);
+
+void mostra_historico();
+
+int main()
+{
+    setlocale(LC_ALL, "portuguese");
+    for (int i = 0; i < TAMANHO; i++)
+    {
+        voucher[i].id = FALSE;
+        carrinho[i].id = FALSE;
+    }
+
+    menu();
+
+    return 0;
+}
+
+void menu()
+{
+    int op;
+    system("cls");
+    printf("Escolha uma opcao:\n");
+    while (1)
+    {
+        printf("\n(1) Funcionario\n");
+        printf("(2) Cliente\n");
+        printf("(0) Sair\n");
+        printf(" -> ");
+        scanf("%d", &op);
+        system("cls");
+        switch (op)
+        {
+        case 1:
+            menu_funcionario();
+            break;
+        case 2:
+            menu_cliente();
+            break;
+        case 0:
+            exit(0);
+        default:
+            printf("Opção inexistente!\n");
+        }
+    }
+}
+
+void menu_funcionario()
+{
+    int op;
+    system("cls");
+    printf("Escolha uma opcao:\n");
+    while (1)
+    {
+        printf("\n(1) Cadastro Voucher\n");
+        printf("(2) Historico de Resgates\n");
+        printf("(0) Voltar\n");
+        printf(" -> ");
+        scanf("%d", &op);
+        system("cls");
+        switch (op)
+        {
+        case 1:
+            menu_voucher();
+            break;
+        case 2:
+            mostra_historico();
+            break;
+        case 0:
+            menu();
+        default:
+            printf("Opção inexistente!\n");
+        }
+    }
+}
+
+void menu_cliente()
+{
+    cadastro_usuario();
+}
+
+void historico(int j, int soma)
+{
+    for (int i = 0; i < TAMANHO; i++)
+    {
+        if (carrinho[i].id == FALSE)
+        {
+            strcpy(carrinho[i].empresa, voucher[j].empresa);
+            carrinho[i].valor = voucher[j].valor;
+            carrinho[i].id = TRUE;
+            strcpy(carrinho[i].nome, cadastro.nome);
+            strcpy(carrinho[i].email, cadastro.email);
+            carrinho[i].telefone = cadastro.telefone;
+            carrinho[i].cpf = cadastro.cpf;
+            carrinho[i].kg = soma;
+            break;
+        }
+    }
+}
+
+void mostra_historico()
+{
+    if (carrinho[0].id == FALSE)
+    {
+        printf("Nao houve nenhum resgate ainda!\n");
+    }
+    else
+    {
+        for (int k = 0; k < TAMANHO; k++)
+        {
+            if (carrinho[k].id == TRUE)
+            {
+                printf("--------Cliente #%d--------\n\nNome: %s\tEmail:%s\nCPF: %d\tTelefone: %d\nEmpresa: %s \tValor: R$ %d\nQuantidade reciclada: %d Kg\n-------------------------\n", k, carrinho[k].nome, carrinho[k].email, carrinho[k].cpf,
+                       carrinho[k].telefone, carrinho[k].empresa, carrinho[k].valor, carrinho[k].kg);
+            }
+        }
+    }
+}
+
+void menu_voucher()
+{
+
+    int op;
+    system("cls");
+    printf("Escolha uma opcao:\n");
+    while (1)
+    {
+        printf("\n(1) Adicionar Voucher\n");
+        printf("(2) Remover Voucher\n");
+        printf("(3) Mostrar Vouchers\n");
+        printf("(4) Repor Voucher\n");
+        printf("(0) Voltar\n");
+        printf(" -> ");
+        scanf("%d", &op);
+        system("cls");
+        switch (op)
+        {
+        case 1:
+            add_voucher();
+            break;
+        case 2:
+            remove_voucher();
+            break;
+        case 3:
+            mostra_voucher();
+            break;
+        case 4:
+            repor_voucher();
+            break;
+        case 0:
+            menu_funcionario();
+        default:
+            printf("Opção inexistente!\n");
+        }
+    }
+}
+
+void add_voucher()
+{
+    int i = 0;
+
+    while (voucher[i].id == TRUE)
+    {
+        i++;
+    }
+
+    printf("--------VOUCHERS---------\n\n");
+
+    printf("Nome da Empresa: ");
+    scanf("%s", &voucher[i].empresa);
+
+    printf("Valor do voucher: R$ ");
+    scanf("%d", &voucher[i].valor);
+
+    printf("Quantidade de vouchers: ");
+    scanf("%d", &voucher[i].qtd);
+
+    voucher[i].id = TRUE;
+}
+
+void mostra_voucher()
+{
+    int j;
+
+    printf("--------VOUCHERS---------\n\n");
+
+    for (j = 0; j < TAMANHO; j++)
+    {
+        if (voucher[j].id != FALSE)
+        {
+            printf("\n-------Voucher %d-------\n", j);
+            printf("Nome da Empresa: %s\n", voucher[j].empresa);
+            printf("Valor do voucher: R$ %d\n", voucher[j].valor);
+            printf("Quantidade de vouchers: %d\n\n", voucher[j].qtd);
+        }
+    }
+}
+
+void remove_voucher()
+{
+    int r;
+    mostra_voucher();
+    printf("Qual voucher deseja remover? ");
+    scanf("%d", &r);
+
+    voucher[r].id = FALSE;
+}
+
+void repor_voucher()
+{
+    int i, j;
+
+    mostra_voucher();
+
+    printf("Qual voucher deseja repor? ");
+    scanf("%d", &i);
+
+    printf("Qual a quantidade que deseja adicionar? ");
+    scanf("%d", &j);
+
+    voucher[i].qtd = voucher[i].qtd + j;
+}
+
+void resgate()
+{
+    system("cls");
+    printf("Informe o valor inteiro dos Kg reciclados em seus respectivos campos: \n");
+
+    int a, b, c, d, soma;
+
+    printf("Papel: ");
+    scanf("%d", &a);
+
+    printf("Metal: ");
+    scanf("%d", &b);
+
+    printf("Plastico: ");
+    scanf("%d", &c);
+
+    printf("Vidro: ");
+    scanf("%d", &d);
+
+    soma = a + b + c + d;
+    int j, cod, i = 0, vazio = TRUE;
+
+    if (soma >= 10 && soma <= 19)
+    {
+        printf("\nVocê tem direito a um dos vouchers abaixo:");
+
+        for (j = 0; j < TAMANHO; j++)
+        {
+
+            if (voucher[j].id == TRUE && voucher[j].valor <= 30 && voucher[j].qtd > 0)
+            {
+                i++;
+                voucher[j].cod = i;
+                vazio = FALSE;
+                printf("\n(%d) Voucher do %s de R$ %d reais", i, voucher[j].empresa, voucher[j].valor);
+            }
+        }
+    }
+    else if (soma >= 20)
+    {
+        printf("\nVocê tem direito a um dos vouchers abaixo:");
+
+        for (j = 0; j < TAMANHO; j++)
+        {
+
+            if (voucher[j].id == TRUE && voucher[j].valor > 0 && voucher[j].qtd > 0)
+            {
+                i++;
+                voucher[j].cod = i;
+                vazio = FALSE;
+                printf("\n(%d) Voucher do %s de R$ %d reais", i, voucher[j].empresa, voucher[j].valor, voucher[j].cod);
+            }
+        }
+    }
+    else
+    {
+        printf("\nVocê não atingiu o valor necessário. \n");
+    }
+
+    if (vazio == FALSE)
+    {
+
+        printf("\nQual voucher deseja resgatar: ");
+        scanf("%d", &cod);
+
+        for (j = 0; j < TAMANHO; j++)
+        {
+            if (cod == voucher[j].cod && voucher[j].id == TRUE && voucher[j].qtd > 0)
+            {
+                printf("\nParabens %s!\nVocê receberá o seu código do %s no seu email: %s\n", cadastro.nome, voucher[j].empresa, cadastro.email);
+                voucher[j].qtd--;
+                for (int k = 0; k < TAMANHO; k++)
+                {
+                    voucher[k].cod = -1;
+                }
+                historico(j, soma);
+                break;
+            }
+        }
+    }
+    else
+    {
+        printf("\nDesculpa! Nao temos vouchers disponiveis no momento.\n");
+    }
+}
+
+void cadastro_usuario()
+{
+    char i;
+    printf("Primeiro Nome: ");
+    scanf("%s", &cadastro.nome);
+
+    printf("CPF: ");
+    scanf("%d", &cadastro.cpf);
+
+    printf("Telefone: ");
+    scanf("%d", &cadastro.telefone);
+
+    printf("Email: ");
+    scanf("%s", &cadastro.email);
+
+    system("cls");
+
+    printf("CPF: %d\nTelefone: %d\nEmail: %s\nNome: %s\n\nTodos os dados estão corretos? (s/n)", cadastro.cpf, cadastro.telefone, cadastro.email, cadastro.nome);
+    scanf("%s", &i);
+
+    if (i == 'n' || i == 'N')
+    {
+        cadastro_usuario();
+    }
+
+    resgate();
+}
