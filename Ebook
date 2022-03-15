@@ -5,7 +5,7 @@
 
 #define TRUE 1
 #define FALSE 0
-#define TAMANHO 8
+#define TAMANHO 8 
 
 struct Voucher
 {
