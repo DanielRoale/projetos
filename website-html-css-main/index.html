@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+  <link rel="stylesheet" href="style.css">
+  <title>Site</title>
+</head>
+<body>
+  <main>
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        <img src="./img/pc.png" alt="Logo da Empresa">
+      </div>
+      </div>
+      <div class="menu">
+        <nav class="nav-list">
+            <a href="#home">Home</a>
+            <a href="#about">Sobre</a>
+            <a href="#services">Serviços</a>
+            <a href="#news">Novidades</a>            
+            <a href="#contact">Contato</a>
+        </nav>
+      </div>
+    </header>  
+    
+    <!-- HOME -->
+    <section id="home">
+      <div class="home-info">
+        <h2>Olá, Somos a William, empresa de desenvolvimento de sistemas</h2>
+        <span class="home-position">Possuimos os melhores Programadores FullStack</span>
+        <span class="home-resume">
+          A Empressa Willian de Desenvolvimento de Sistemas é uma empresa inovadora e comprometida em fornecer soluções tecnológicas de ponta para atender às demandas complexas do mercado atual.
+          Com uma equipe altamente qualificada e uma abordagem centrada no cliente, estamos dedicados a impulsionar o sucesso de nossos parceiros por meio de soluções de software personalizadas e de alta qualidade.
+        </span>
+
+        <button>
+          <a href="#contact">Contate-me</a>
+        </button>
+      </div>
+      <div class="home-img">
+        <img src="./img/xavatar.png" alt="Foto de perfil">
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+
+  <section id="about">
+    <div class="about-info">
+      <h2>Olá, somos a William</h2>
+      <span class="home-position">Programadores FullStack</span>
+      <span class="home-resume">
+        Nossa missão é transformar desafios em oportunidades, oferecendo serviços de desenvolvimento de sistemas que atendam às necessidades específicas de nossos clientes. Buscamos constantemente excelência técnica, inovação e satisfação do cliente, sendo um parceiro confiável na jornada digital de empresas de todos os setores.
+        <p> Os proprietarios são Rodrigo Ribeiro, Daniel Abdo e Filipe Goulart.</p>
+      </span>
+
+    </div>
+  </section>
+
+    <!-- SERVIÇOS -->
+
+    <section id="services">
+      <h2>Projetos</h2>
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="project-img">
+              <img src="./img/site.png" alt="Foto de um site">
+            </div>
+            <div class="project-info">
+              <h2>WebSites Modernos</h2>
+              <p>Criação de websites modernos responsivos para qualquer dispositivo.</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="project-img">
+              <img src="./img/shop.png" alt="Foto de uma loja online">
+            </div>
+            <div class="project-info">
+              <h2>E-commerce</h2>
+              <p>Criação de lojas online de qualquer produto.</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="project-img">
+              <img src="./img/sistema.png" alt="Foto de um sistema">
+            </div>
+            <div class="project-info">
+              <h2>Sistemas completos</h2>
+              <p>Criação de sistemas completos desde o back-end até o front-end.</p>
+            </div>
+          </div>
+        </div>
+      
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+
+  <section id="news">
+    <div class="news-section">
+      <h2>Últimas Notícias</h2>
+      <div class="news-article">
+        <h3></h3>
+        <p></p>
+      </div>
+      <div class="news-article">
+        <h3>Líderes da Industria</h3>
+        <p>1. Parceria Estratégica com Líderes da Indústria:
+          A Empressa Willian solidificou parcerias estratégicas com líderes da indústria de tecnologia para oferecer aos nossos clientes acesso a recursos e tecnologias de última geração. Essas colaborações nos posicionam na vanguarda da inovação, permitindo-nos fornecer soluções ainda mais avançadas e personalizadas.
+          </p>
+      </div>
+      <div class="news-article">
+        <h3>Expansão Global</h3>
+        <p>2. Expansão Global das Operações:
+          Estamos entusiasmados em anunciar a expansão de nossas operações para novos mercados globais. Com escritórios regionais estabelecidos em pontos estratégicos, estamos melhor posicionados para atender às necessidades de clientes internacionais e oferecer suporte localizado.</p>
+      </div>
+      <div class="news-article">
+        <h3>Desenvolcimento Sustentavel</h3>
+        <p> 4. Reconhecimento por Excelência em Desenvolvimento Sustentável:
+          A Empressa Willian foi recentemente reconhecida por seus esforços em desenvolvimento sustentável na indústria de tecnologia. Comprometemo-nos a adotar práticas eco-amigáveis em nossas operações e a desenvolver soluções que ajudem nossos clientes a alcançar metas de sustentabilidade.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+    <h2>Contato</h2>
+    <form action="salvar_contato.php" method="post">
+      <input type="text" name="nome" placeholder="Digite seu nome" />
+      <input type="email" name="email" placeholder="Digite seu e-mail" />
+      <textarea name="mensagem" cols="30" rows="10" placeholder="Digite sua mensagem"></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer>
+    copyright © 2023 Rodrigo Ribeiro, Daniel Abdo e Filipe Goulart. Todos os direitos reservados
+  </footer>
+  </main>  
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
